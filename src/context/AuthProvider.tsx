@@ -1,3 +1,10 @@
+import * as AWS from "aws-sdk/global";
+import {
+  CognitoUserPool,
+  CognitoUserAttribute,
+  CognitoUser,
+  AuthenticationDetails,
+} from "amazon-cognito-identity-js";
 import React, {
   createContext,
   Dispatch,
@@ -11,6 +18,11 @@ type UserType = {
   setUser: Dispatch<SetStateAction<{ id: number }>>;
 };
 
+export const poolData = {
+  UserPoolId: "ap-northeast-2_II4bm9AW3", // Your user pool id here
+  ClientId: "3lql5sfh1506csst6m80kllddv", // Your client id here
+};
+
 export const AuthContext = createContext<UserType>({
   user: { id: 1 },
   setUser: () => void 0,
@@ -18,7 +30,7 @@ export const AuthContext = createContext<UserType>({
 
 const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useState({ id: 1 });
-  //   navigate("/login");
+
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}
