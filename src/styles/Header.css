@@ -1,0 +1,49 @@
+#headerContainer {
+  width: 100vw;
+  height: 64px;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#headerMiddleContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100vw;
+  position: relative;
+  height: 100%;
+}
+#dropDown {
+  position: absolute;
+  bottom: -38px;
+  right: 0;
+  background-color: white;
+  padding: 8px 16px;
+  border: 1px solid #eaeaea;
+  border-top-color: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  width: 100px;
+  height: 38px;
+  font-size: 17px;
+  color: #172b4d;
+  cursor: pointer;
+}
+.headerTitle {
+  color: #172b4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 1060px) {
+  #headerMiddleContainer {
+    width: 1060px !important;
+  }
+}

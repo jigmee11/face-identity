@@ -1,23 +1,21 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import AuthProvider from "./context/AuthProvider";
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-import "./style/login.css";
-
+import { Route, Routes } from "react-router-dom";
+import {
+  HomeScreen,
+  ResultScreen,
+  SignInScreen,
+  SignUpScreen,
+} from "./screens";
+import ConfirmScreen from "./screens/ConfirmScreen";
 const App = () => {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+    <Routes>
+      <Route path="/signIn" element={<SignInScreen />} />
+      <Route path="/signUp" element={<SignUpScreen />} />
+      <Route path="/result" element={<ResultScreen />} />
+      <Route path="/confirm" element={<ConfirmScreen />} />
+      <Route path="/" element={<HomeScreen />} />
+    </Routes>
   );
 };
 

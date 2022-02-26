@@ -1,0 +1,18 @@
+.input {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 24px;
+	background: #ffffff;
+	border: 2px solid #172b4d;
+	box-sizing: border-box;
+	border-radius: 4px;
+	padding: 12px 16px;
+	margin: 8px 0px;
+	width: 100%;
+	color: #172b4d;
+	font-weight: 600;
+}
+.input:focus {
+	outline: none;
+}
