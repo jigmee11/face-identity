@@ -1,0 +1,21 @@
+{
+  "name": "serverless-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.53.0",
+    "aws-sdk": "^2.1083.0",
+    "random-words": "^1.1.2",
+    "serverless-plugin-include-dependencies": "^5.0.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^8.5.0"
+  }
+}
