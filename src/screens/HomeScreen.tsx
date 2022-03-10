@@ -1,39 +1,29 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Lottie from "react-lottie";
 import Button from "../components/Button";
 import animationData from "../assets/lf30_editor_ncjtqgwd.json";
 import { Header } from "../components";
 import axios from "axios";
 import { Context } from "../Provider";
+import { getApiWithUser, uploadWithS3 } from "../api";
 export const HomeScreen = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<string | null>(null);
   const { token, user } = useContext(Context);
+  const [files1, setFiles1] = useState<any>(null);
   console.log(token);
-  const findTwin = () => {
-    axios
-      .get(
-        "https://afz08anorl.execute-api.ap-northeast-2.amazonaws.com/dev1/random-words?word=10",
-        {
-          headers: {
-            token: token,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // setLoading(true);
-    // navigate("/result");
-    // setLoading(false);
+  const findTwin = async () => {
+    const url = await getApiWithUser("/dev/putfile", {
+      name: `test/${files1.name}`,
+      type: files1.type,
+    });
+    await uploadWithS3(url, files1);
+    console.log("done");
   };
   const readURL = (files: FileList | null) => {
     if (files && files[0]) {
+      setFiles1(files[0]);
       setFile(URL.createObjectURL(files[0]));
     }
   };
@@ -55,7 +45,7 @@ export const HomeScreen = () => {
             backgroundColor: "rgba(255, 255, 255, 0.6)",
           }}
         >
-          <Lottie
+          {/* <Lottie
             options={{
               loop: true,
               autoplay: true,
@@ -67,7 +57,7 @@ export const HomeScreen = () => {
             isClickToPauseDisabled
             height={300}
             width={300}
-          />
+          /> */}
         </div>
       )}
       <div id="container">
