@@ -1,13 +1,12 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://afz08anorl.execute-api.ap-northeast-2.amazonaws.com/dev1",
 });
 
 export const getApiWithUser = (endpoint, header) => {
   const config = {
-    headers: {
-      "Content-Type": "application/json",
+    header: {
       ...header,
     },
   };
@@ -23,4 +22,12 @@ export const uploadWithS3 = async (url, file) => {
     },
   });
   return "done";
+};
+
+export const search = async (name, toke) => {
+  return axios.get(`http://localhost:3000/dev/search-face?name=${name}`, {
+    header: {
+      token: toke,
+    },
+  });
 };

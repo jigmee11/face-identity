@@ -19,17 +19,28 @@ plugins:
 package:
   patterns:
     - "!node_modules/**"
-    - "node_modules/random-words/**"
 
 functions:
-  s3-trigger:
+  searchFace:
+    handler: searchface.handler
+    events:
+      - http:
+          path: /search-face
+          method: get
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                name: true
+  triggerForFaceIndex:
     handler: s3trigger.handler
     events:
       - s3:
-        bucket: face-identity-jigmee
-        event: s3:ObjectCreated:*
-        rules:
-          - prefix: test/
+          bucket: face-identity-jigmee
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: test/
+          existing: true
   put-file:
     handler: s3.getPreSignedURLToPutToS3
     events:

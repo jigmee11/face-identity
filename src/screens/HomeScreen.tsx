@@ -5,21 +5,21 @@ import animationData from "../assets/lf30_editor_ncjtqgwd.json";
 import { Header } from "../components";
 import axios from "axios";
 import { Context } from "../Provider";
-import { getApiWithUser, uploadWithS3 } from "../api";
+import { getApiWithUser, search, uploadWithS3 } from "../api";
 export const HomeScreen = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<string | null>(null);
   const { token, user } = useContext(Context);
   const [files1, setFiles1] = useState<any>(null);
-  console.log(token);
   const findTwin = async () => {
-    const url = await getApiWithUser("/dev/putfile", {
-      name: `test/${files1.name}`,
+    const url = await getApiWithUser("/put-file", {
+      name: `faces/${files1.name}`,
       type: files1.type,
+      token: token,
     });
     await uploadWithS3(url, files1);
-    console.log("done");
+    await search(`faces/${files1.name}`, token).then((doc) => console.log(doc));
   };
   const readURL = (files: FileList | null) => {
     if (files && files[0]) {
